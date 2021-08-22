@@ -1,0 +1,207 @@
+{
+  "store.search": {
+    "blocks": [
+      "search-result-layout"
+    ],
+    "props": {
+      "context": {
+          "skusFilter": "FIRST_AVAILABLE",
+          "simulationBehavior": "skip"
+      }
+   }
+},
+"search-bar": {
+  "blocks": ["autocomplete-result-list.v2"],
+  "props": {
+    "openAutocompleteOnFocus": true
+  }
+},
+"autocomplete-result-list.v2": {
+  "blocks": ["product-summary"]
+},
+//--> defini os categorias
+"store.search#category": {
+  "blocks": ["search-result-layout"],
+  "props": {
+      "context": {
+          "skusFilter": "FIRST_AVAILABLE",
+          "simulationBehavior": "skip"
+      }
+   }
+},
+  
+  "search-result-layout": {
+    "blocks": [
+      "search-result-layout.desktop",
+      "search-result-layout.mobile",
+      "search-not-found-layout"
+    ]
+  },
+  "search-result-layout.desktop": {
+    "children": [
+      "breadcrumb.search",
+      "search-title.v2",
+      "flex-layout.row#top",
+      "search-fetch-previous",
+      "flex-layout.row#results",
+      "flex-layout.row#did-you-mean",
+      "flex-layout.row#suggestion",
+      "flex-layout.row#banner-one",
+      "search-fetch-more"
+    ],
+    "props":{
+      "pagination": "show-More",
+      "preventRouteChange": true,
+      "mobileLayout": {
+        "mode1": "small",
+        "mode2": "normal"
+      }
+    }
+  },
+  "flex-layout.row#did-you-mean": {
+    "children": ["did-you-mean"]
+  },
+  "flex-layout.row#suggestion": {
+    "children": ["search-suggestions"]
+  },
+  "flex-layout.row#banner-one": {
+    "children": ["search-banner#one"]
+  },
+
+  "search-banner#one": {
+    "props": {
+      "area": "one",
+      "blockClass": "myBanner",
+      "horizontalAlignment": "center"
+    }
+  },
+  "flex-layout.row#top": {
+    "children": [
+      "total-products.v2",
+      "order-by.v2"
+    ]
+  },
+  "flex-layout.row#results": {
+    "children": [
+      "flex-layout.col#filter",
+      "flex-layout.col#search"
+    ]
+  },
+  "flex-layout.col#filter": {
+    "props": {
+      "width": "20%"
+    },
+    "children": [
+      "filter-navigator.v3"
+    ]
+  },
+  "flex-layout.col#search": {
+    "children": [
+      "search-content"
+    ]
+  },
+     //---------produtos
+     "search-result-layout.customQuery#home": {
+      "props": {
+        "querySchema": {
+          "skusFilter": "FIRST_AVAILABLE",
+          "simulationBehavior": "skip",
+          "maxItemsPerPage": 8
+        }
+      },
+      "blocks":["search-result-layout.desktop#home"]
+    },
+    "search-result-layout.desktop#home":{
+      "children": [
+        "search-content#home"
+      ],
+      "props": {
+        "preventRouteChange": true
+      } 
+    },
+    "search-content#home":{
+      "blocks":[
+        "gallery#home", "not-found"
+      ]
+    },
+
+    "gallery#home":{
+      "props":{
+        "layouts":[
+          {
+            "name":"grid",
+            "component": "GridSummary",
+            "itemsPerRow":{
+              "(min-width:1300px)":2,
+              "desktop":2,
+              "tablet":2,
+              "phone":1
+
+            }
+          },
+          {
+            "name":"list",
+            "component": "ListSummary",
+            "itemsPerRow": 1
+          }
+        ],
+        "ListSummary": "product-summary.shelf#home",
+        "GridSummary": "product-summary.shelf#home"
+      }
+    },
+
+    "product-summary.shelf#home": {
+      "children": [
+        "modal-trigger#home",
+        "product-summary-name",
+        "product-images#home",
+        "product-summary-price",
+        "add-to-cart-button#home"       
+      ],
+      "props":{
+        "blockClass":["produto"]
+      }
+    },
+    "product-images#home":{
+      "props":{
+        "showNavigationArrows": true,
+        "showPaginationDots": true
+      }
+    },
+    "add-to-cart-button#home":{
+      "props":{
+        "onClickBehavior":"go-to-product-page",
+        "text": "VER DETALHES"
+      }
+    },
+    "modal-trigger#home":{
+      "children": [
+        "rich-text#home",
+        "modal-layout#home"
+      ]
+    },
+    "rich-text#home":{
+      "props":{
+        "text":"Video"
+      }
+    },
+
+    "modal-layout#home":{
+      "children":[
+       "video#home"
+      ]
+    },
+    "video#home":{
+      "props": { 
+        "width": "1366",
+        "height": "720",
+        "loop": false,
+        "autoPlay": true,
+        "muted": true,
+        "src": "https://www.youtube.com/watch?v=vVNF4OASRDI"
+      }
+    }
+     //---------produtos
+     
+
+}

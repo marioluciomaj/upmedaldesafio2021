@@ -1,0 +1,24 @@
+{
+  // inicio home
+
+ 
+  "store.home": {
+    "blocks": [
+      "tab-layout#home",
+      
+      "search-result-layout.customQuery#home"
+        
+     ]
+  },
+
+  //fim do home
+  
+   //--> Inicio do menu
+  "tab-layout#home": {
+    "children": ["tab-list#home","flex-layout.row#slider","tab-content#home"]
+  }
+ 
+   //--> Fim do menu
+ 
+ 
+}
